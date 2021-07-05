@@ -1,0 +1,29 @@
+version: '3'
+services:
+  # FRONTEND
+  client-service:
+    image: node:14
+    command: bash -c "yarn install && yarn start"
+    environment:
+      CI: 'true'
+      REACT_APP_API_URL: ${REACT_APP_API_URL}
+    restart: on-failure
+    working_dir: /opt/app
+    volumes:
+      - ./client-service:/opt/app
+    ports:
+      - '${CLIENT_PORT}:${CLIENT_PORT}'
+    depends_on:
+      - api-service
+  # API Server
+  api-service:
+    image: node:14
+    command: bash -c "yarn install && yarn start"
+    environment:
+      PORT: ${API_PORT}
+    restart: on-failure
+    working_dir: /opt/app
+    volumes:
+      - ./api-service:/opt/app
+    ports:
+      - ${API_PORT}:${API_PORT}
