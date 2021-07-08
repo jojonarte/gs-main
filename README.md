@@ -15,11 +15,20 @@ In order to setup the project you will need the following technologies installed
 ```shell
 cp .env.example .env
 git submodule update --init --recursive
-make build
 make run
 ```
 
 Building the services might take a while as it needs to pull the dependencies before it can run.
+
+**Note: the make run command might fail if the some services are not yet up so you might need to manually trigger the final steps of make run on below commands**
+
+```shell
+make migrate
+make seed
+```
+
+**migrate** - will be responsible for generating the tables
+**seed** - will be responsible for populating the phones table with data
 
 PS: Stack have other technologies as postgreSQL but is not necessary to install that in your OS as we use inside of the containers.
 
@@ -27,7 +36,7 @@ PS: Stack have other technologies as postgreSQL but is not necessary to install 
 # Where to find them?
 Api service will be built on - http://localhost:3002
 
-Client service will be build on http://localhost:3000
+Client service will be build on http://localhost:3000, this would probably take the longest to get up and running.
 
 This configuration can be changed in the `.env` file.
 
