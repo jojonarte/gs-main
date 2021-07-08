@@ -1,28 +1,44 @@
 # Guidesmiths Frontend+Backend exam
 
-## Running the app
-### Prerequisites:
+## Demo screenshot
+![](./screenshot.png)
+
+## Installing / Getting started
+
+In order to setup the project you will need the following technologies installed:
+- Docker
+- docker-compose
 - docker
+- git
+- make
 
 ```shell
-$ cp .env.example .env
-$ git submodule update --init --recursive
-$ docker-compose up // or with -d
+cp .env.example .env
+git submodule update --init --recursive
+make build
+make run
 ```
 
 Building the services might take a while as it needs to pull the dependencies before it can run.
 
+PS: Stack have other technologies as postgreSQL but is not necessary to install that in your OS as we use inside of the containers.
+
+
 # Where to find them?
 Api service will be built on - http://localhost:3002
 
-Client service will be build on http://localhost
+Client service will be build on http://localhost:3000
 
 This configuration can be changed in the `.env` file.
 
-# Tests
-- each service have individual test suites configured, you can do below steps
-```
-cd <service folder>
-cp .env.example .env
-yarn; yarn test
-```
+## .env variables (these can be changed to your preference)
+
+| Variable  | default value  | description |
+|---|---|---|
+|  REACT_APP_API_URL | http://localhost:3002/api/v1  | endpoint used by the client-service to connect to the api-service
+|  CLIENT_PORT | 3000  | port used by client-service |
+|  API_PORT |  3002 | port used by api-service |
+|  POSTGRES_DOCKER_IMAGE |  postgres:12 | default postgres docker image version |
+|  POSTGRES_PASSWORD |  password | postgres password |
+|  POSTGRES_DB |  development | postgres db variable which will be used as default db when initializing the container image |
+|  POSTGRES_PORT |  5432 | default postgres port |
