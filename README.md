@@ -1,4 +1,4 @@
-# Guidesmiths Frontend+Backend exam
+# Phone Gallery Frontend+Backend 
 
 ## Demo screenshot
 ![](./screenshot.png)
